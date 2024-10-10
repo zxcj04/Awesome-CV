@@ -92,6 +92,8 @@
 }
 % Solves issues Warning: File `cv.out' has changed
 \RequirePackage{bookmark}
+\RequirePackage{xeCJK}
+\setCJKmainfont{Noto Sans Mono CJK TC}
 
 %-------------------------------------------------------------------------------
 %                Configuration for directory locations
