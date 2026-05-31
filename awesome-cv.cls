@@ -82,22 +82,15 @@
   Renderer=HarfBuzz,
 }
 % --- CJK (Traditional Chinese) support -------------------------------------
-% Render Han characters through a Noto Sans CJK TC fallback so mixed
-% Latin/Chinese resumes typeset without tofu boxes. This relies on luaotfload
-% and therefore REQUIRES LuaLaTeX; under other engines it is silently skipped
-% (compile this template with lualatex -- see docker/ for a ready environment).
+% Mixed Latin/Chinese resumes are typeset with LuaTeX-ja, which provides
+% proper CJK line breaking (kinsoku) and CJK/Latin spacing that a plain font
+% fallback cannot. REQUIRES LuaLaTeX (see docker/ for a ready environment);
+% the CJK font itself is loaded after the Latin fonts, below.
 % Override the CJK family before \documentclass with \def\acvCJKFont{...} if
 % you prefer a different installed font (e.g. Noto Sans CJK SC, Source Han Sans).
 \providecommand*{\acvCJKFont}{Noto Sans CJK TC}
-\ifdefined\directlua
-  \directlua{luaotfload.add_fallback("acvcjkfallback", {"\acvCJKFont:mode=harf;"})}
-  \def\acv@cjkfeature{RawFeature={fallback=acvcjkfallback},}
-\else
-  \def\acv@cjkfeature{}
-\fi
 % ---------------------------------------------------------------------------
 \setmainfont{Source Sans 3}[
-  \acv@cjkfeature
   UprightFont=*,
   ItalicFont=* Italic,
   BoldFont=* Bold,
@@ -106,7 +99,6 @@
   FontFace={l}{it}{Font=* Light Italic},
 ]
 \setsansfont{Source Sans 3}[
-  \acv@cjkfeature
   UprightFont=*,
   ItalicFont=* Italic,
   BoldFont=* Bold,
@@ -115,7 +107,6 @@
   FontFace={l}{it}{Font=* Light Italic},
 ]
 \newfontfamily\roboto{Roboto}[
-  \acv@cjkfeature
   UprightFont=*,
   ItalicFont=* Italic,
   BoldFont=* Bold,
@@ -123,6 +114,15 @@
   FontFace={l}{n}{Font=* Light},
   FontFace={l}{it}{Font=* Light Italic},
 ]
+% CJK typesetting (LuaLaTeX only): route Han characters to \acvCJKFont and
+% enable CJK line breaking + CJK/Latin spacing. Latin text keeps the fonts above.
+\ifdefined\directlua
+  \RequirePackage{luatexja-fontspec}
+  \setmainjfont{\acvCJKFont}
+  % luatexja leaves a scratch \x defined at load time; release it so that
+  % awesome-cv.cls can \newcommand{\x} later without an "already defined" clash.
+  \let\x\undefined
+\fi
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
 % Needed to deal a paragraphs
