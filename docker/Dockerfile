@@ -17,6 +17,7 @@ FROM texlive/texlive:latest
 RUN apt-get update \
  && apt-get install -y --no-install-recommends fonts-noto-cjk \
  && fc-cache -f \
+ && luaotfload-tool --update \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /work

@@ -21,6 +21,10 @@ jobs:
         apt-get update
         apt-get install -y --no-install-recommends fonts-noto-cjk
         fc-cache -f
+        # Refresh luaotfload's name database so the just-installed CJK font is
+        # found on first lookup (otherwise the first compile triggers a noisy
+        # "Font not found -> Reload initiated" rebuild mid-run).
+        luaotfload-tool --update
 
     - name: Compile
       run: make
@@ -28,4 +32,5 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: examples
-        path: examples/*.pdf
+        # The Makefile writes PDFs to examples/tex_output/ (not examples/).
+        path: examples/tex_output/*.pdf
