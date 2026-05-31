@@ -13,6 +13,15 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
 
+    # Traditional-Chinese glyphs need a CJK font present (the luaotfload
+    # fallback in awesome-cv.cls points at "Noto Sans CJK TC"). This mirrors
+    # docker/Dockerfile -- keep the two in sync.
+    - name: Install CJK fonts
+      run: |
+        apt-get update
+        apt-get install -y --no-install-recommends fonts-noto-cjk
+        fc-cache -f
+
     - name: Compile
       run: make
 
