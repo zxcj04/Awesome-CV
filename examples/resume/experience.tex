@@ -17,10 +17,11 @@
     {Nov. 2024 - Present} % Date(s)
     {
       \begin{cvitems} % Description(s) of tasks/responsibilities
-        \item {開發工業通訊協定轉換服務（Modbus、OPC UA、PROFINET），將底層協定整合為使用者可操作的產品功能，模組共用於 4 條產品線}
         \item {設計並實作 RESTful API，作為裝置後端與前端 Web UI 的介面，讓使用者可設定、查詢與管理裝置功能；負責 request/response schema、錯誤處理與設定更新流程}
+        \item {以 C/C++ 將底層工業通訊協定（Modbus、OPC UA、PROFINET）整合為使用者可操作的產品服務，橋接 OT 裝置資料為 IT 可消費的介面，模組共用於 4 條產品線}
         \item {以 SQLite 實作設定管理與持久化，處理讀寫流程、預設值、升級相容性與資料一致性}
-        \item {透過 log 分析與 root cause analysis 解決功能面的相容性與穩定性問題，提升可維護性}
+        \item {透過 log 分析、gdb 與 root cause analysis 解決跨平台相容性與穩定性問題，提升可維護性}
+        \item {於嵌入式 Linux 與 Zephyr RTOS 建置模組，並以跨平台編譯（amd64 / arm64 / armhf）確保硬體可攜性}
         \item {與前端、韌體、QA、PM 跨部門協作，從需求到功能交付，確認 API 行為、協定對應規則與釋出規格}
       \end{cvitems}
     }

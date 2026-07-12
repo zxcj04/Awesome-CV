@@ -21,7 +21,12 @@
 \documentclass[11pt, a4paper]{awesome-cv}
 
 % Configure page margins with geometry
-\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+\geometry{left=1.4cm, top=.7cm, right=1.4cm, bottom=1.3cm, footskip=.5cm}
+
+% Slightly tighten vertical section spacing to keep everything on one page
+% (defaults in awesome-cv.cls: SectionTopSkip 3mm, SectionContentTopSkip 2.5mm)
+\renewcommand{\acvSectionTopSkip}{1.8mm}
+\renewcommand{\acvSectionContentTopSkip}{1.7mm}
 
 % Color for highlights
 % Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
@@ -52,11 +57,12 @@
 % Available options: circle|rectangle,edge/noedge,left/right
 % \photo[rectangle,edge,right]{./examples/profile}
 \name{}{黃爾群}
-\position{Software Engineer{\enskip\cdotp\enskip}軟體工程師}
+\position{Software Engineer{\enskip\cdotp\enskip}軟體工程師{\enskip\cdotp\enskip}Backend / Full-Stack{\enskip\cdotp\enskip}Industrial IoT}
+\address{Keelung, Taiwan{\enskip\cdotp\enskip}open to remote}
 
 \mobile{0912125636}
 \email{rende.huang98@gmail.com}
-\dateofbirth{June 5th, 2000}
+% \dateofbirth removed for the one-page / outward-facing version (no age field)
 % \homepage{www.posquit0.com}
 \github{zxcj04}
 % \linkedin{posquit0}
